@@ -9,8 +9,8 @@ aws ec2 describe-vpcs
 # get RouteTableId from
 aws ec2 describe-route-tables
 
-# create S3 gateway endpoint (aka VPC gateway)
-aws ec2 create-vpc-endpoint --vpc-id <vpcId from above> --service-name com.amazonaws.us-east-1.s3 --route-table-ids <RouteTableId>
+# create S3 gateway endpoint (aka VPC gateway) 
+aws ec2 create-vpc-endpoint --vpc-id <vpcId from above> --service-name com.amazonaws.us-east-1.s3 --route-table-ids <RouteTableId from above>
 
 # create IAM service role that can be assumed by Glue:
 aws iam create-role --role-name my-glue-service-role --assume-role-policy-document '{
