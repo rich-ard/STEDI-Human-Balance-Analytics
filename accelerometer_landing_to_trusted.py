@@ -27,7 +27,16 @@ DEFAULT_DATA_QUALITY_RULESET = """
 """
 
 # Script generated for node Accelerometer Landing
-AccelerometerLanding_node1 = glueContext.create_dynamic_frame.from_catalog(database="stedi", table_name="accelerometer_landing", transformation_ctx="AccelerometerLanding_node1")
+AccelerometerLanding_node1 = glueContext.create_dynamic_frame.from_options(
+    format_options={"multiline": False},
+    connection_type="s3",
+    format="json",
+    connection_options={
+        "paths": ["s3://frequently-modulated/accelerometer/landing/"],
+        "recurse": True,
+    },
+    transformation_ctx="AccelerometerLanding_node1",
+)
 
 # Script generated for node Customer Trusted
 CustomerTrusted_node1 = glueContext.create_dynamic_frame.from_options(
