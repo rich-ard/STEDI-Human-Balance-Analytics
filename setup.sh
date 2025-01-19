@@ -1,7 +1,11 @@
 # AWS commands
 
+# clone udacity repo
+git clone https://github.com/udacity/nd027-Data-Engineering-Data-Lakes-AWS-Exercises.git
+
 # create an AWS bucket, with name_of_bucket replacing 'frequently-modulated'
 aws s3 mb s3://frequently-modulated
+aws s3 mb s3://frequently-modulated-lakehouse
 
 # get vpcId from
 aws ec2 describe-vpcs
@@ -26,7 +30,7 @@ aws iam create-role --role-name my-glue-service-role --assume-role-policy-docume
     ]
 }'
 
-# grant Glue privileges to the S3 bucket, with name_of_bucket replacing 'frequently-modulated'
+# grant Glue privileges to the S3 buckets, with name_of_bucket replacing 'frequently-modulated'
 aws iam put-role-policy --role-name my-glue-service-role --policy-name S3Access --policy-document '{
     "Version": "2012-10-17",
     "Statement": [
@@ -46,6 +50,29 @@ aws iam put-role-policy --role-name my-glue-service-role --policy-name S3Access 
             "Action": "s3:*Object",
             "Resource": [
                 "arn:aws:s3:::frequently-modulated/*"
+            ]
+        }
+    ]
+}'
+aws iam put-role-policy --role-name my-glue-service-role --policy-name S3Access --policy-document '{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "ListObjectsInBucket",
+            "Effect": "Allow",
+            "Action": [
+                "s3:ListBucket"
+            ],
+            "Resource": [
+                "arn:aws:s3:::frequently-modulated-lakehouse"
+            ]
+        },
+        {
+            "Sid": "AllObjectActions",
+            "Effect": "Allow",
+            "Action": "s3:*Object",
+            "Resource": [
+                "arn:aws:s3:::frequently-modulated-lakehouse/*"
             ]
         }
     ]
@@ -145,3 +172,6 @@ aws iam put-role-policy --role-name my-glue-service-role --policy-name GlueAcces
         }
     ]
 }'
+
+# copy all the github repo files into our s3 bucket
+aws s3 cp ./project/starter/ s3://frequently-modulated/ --recursive
