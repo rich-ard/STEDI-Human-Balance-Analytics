@@ -30,7 +30,7 @@ DEFAULT_DATA_QUALITY_RULESET = """
 AccelerometerLandingZone_node1737319792305 = glueContext.create_dynamic_frame.from_catalog(database="stedi", table_name="accelerometer_landing", transformation_ctx="AccelerometerLandingZone_node1737319792305")
 
 # Script generated for node Customer Trusted
-CustomerTrusted_node1737319819749 = glueContext.create_dynamic_frame.from_catalog(database="stedi", table_name="customer_landing", transformation_ctx="CustomerTrusted_node1737319819749")
+CustomerTrusted_node1737319819749 = glueContext.create_dynamic_frame.from_catalog(database="stedi", table_name="customer_trusted", transformation_ctx="CustomerTrusted_node1737319819749")
 
 # Script generated for node Join Customer
 JoinCustomer_node1737319842571 = Join.apply(frame1=CustomerTrusted_node1737319819749, frame2=AccelerometerLandingZone_node1737319792305, keys1=["email"], keys2=["user"], transformation_ctx="JoinCustomer_node1737319842571")
