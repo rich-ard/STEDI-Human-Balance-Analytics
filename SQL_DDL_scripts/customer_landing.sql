@@ -1,4 +1,4 @@
-CREATE EXTERNAL TABLE IF NOLT EXISTS `stedi`.`customer_landing` (
+CREATE EXTERNAL TABLE IF NOT EXISTS `stedi`.`customer_landing` (
   `serialnumber` string,
   `sharewithpublicasofdate` bigint,
   `birthday` string,
