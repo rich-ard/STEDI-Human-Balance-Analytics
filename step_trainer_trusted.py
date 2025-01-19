@@ -17,7 +17,7 @@ CustomerCurated_node1 = glueContext.create_dynamic_frame.from_options(
     format_options={"multiline": False},
     connection_type="s3",
     format="json",
-    connection_options={"paths": ["s3://stedi/customer/curated/"], "recurse": True},
+    connection_options={"paths": ["s3://frequently-modulated/customer/curated/"], "recurse": True},
     transformation_ctx="CustomerCurated_node1",
 )
 
@@ -27,7 +27,7 @@ StepTrainerLanding_node1 = glueContext.create_dynamic_frame.from_options(
     connection_type="s3",
     format="json",
     connection_options={
-        "paths": ["s3://stedi/step_trainer/landing/"],
+        "paths": ["s3://frequently-modulated/step_trainer/landing/"],
         "recurse": True,
     },
     transformation_ctx="StepTrainerLanding_node1",
@@ -59,7 +59,7 @@ StepTrainerTrusted_node1 = glueContext.write_dynamic_frame.from_options(
     connection_type="s3",
     format="json",
     connection_options={
-        "path": "s3://stedi/step_trainer/trusted/",
+        "path": "s3://frequently-modulated/step_trainer/trusted/",
         "compression": "snappy",
         "partitionKeys": [],
     },
