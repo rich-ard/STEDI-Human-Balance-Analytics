@@ -37,9 +37,9 @@ WHERE sharewithresearchasofdate IS NOT NULL
 SharewithResearch_node1737174653696 = sparkSqlQuery(glueContext, query = SqlQuery0, mapping = {"myDataSource":CustomerLanding_node1737174597942}, transformation_ctx = "SharewithResearch_node1737174653696")
 
 # Script generated for node Customer Trusted
-EvaluateDataQuality().process_rows(frame=SharewithResearch_node1737174653696, ruleset=DEFAULT_DATA_QUALITY_RULESET, publishing_options={"dataQualityEvaluationContext": "EvaluateDataQuality_node1737174589149", "enableDataQualityResultsPublishing": True}, additional_options={"dataQualityResultsPublishing.strategy": "BEST_EFFORT", "observations.scope": "ALL"})
-CustomerTrusted_node1737174690617 = glueContext.getSink(path="s3://frequently-modulated/customer/trusted/", connection_type="s3", updateBehavior="UPDATE_IN_DATABASE", partitionKeys=[], compression="snappy", enableUpdateCatalog=True, transformation_ctx="CustomerTrusted_node1737174690617")
-CustomerTrusted_node1737174690617.setCatalogInfo(catalogDatabase="stedi",catalogTableName="customer_trusted")
-CustomerTrusted_node1737174690617.setFormat("json")
-CustomerTrusted_node1737174690617.writeFrame(SharewithResearch_node1737174653696)
+EvaluateDataQuality().process_rows(frame=SharewithResearch_node1737174653696, ruleset=DEFAULT_DATA_QUALITY_RULESET, publishing_options={"dataQualityEvaluationContext": "EvaluateDataQuality_node1737322491875", "enableDataQualityResultsPublishing": True}, additional_options={"dataQualityResultsPublishing.strategy": "BEST_EFFORT", "observations.scope": "ALL"})
+CustomerTrusted_node1737322666942 = glueContext.getSink(path="s3://frequently-modulated/customer/trusted/", connection_type="s3", updateBehavior="UPDATE_IN_DATABASE", partitionKeys=[], enableUpdateCatalog=True, transformation_ctx="CustomerTrusted_node1737322666942")
+CustomerTrusted_node1737322666942.setCatalogInfo(catalogDatabase="stedi",catalogTableName="customer_trusted")
+CustomerTrusted_node1737322666942.setFormat("json")
+CustomerTrusted_node1737322666942.writeFrame(SharewithResearch_node1737174653696)
 job.commit()
