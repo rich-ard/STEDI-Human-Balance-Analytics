@@ -27,3 +27,7 @@ Screenshots:
 - ![Count of step_trainer_trusted: 14460 rows](./screenshot_png_files/count_of_step_trainer_trusted.png)
 
 ## Curated Zone
+
+Screenshots:
+- ![Count of customer_curated: 482 rows](./screenshot_png_files/count_of_customer_curated.png)
+- ![Count of machine_learning_curated: 43681 rows](./screenshot_png_files/count_of_machine_learning_curated.png)
