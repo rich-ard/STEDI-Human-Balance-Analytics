@@ -8,7 +8,7 @@ Required python files at top level of repository:
 - accelerometer_landing_to_trusted.py
 - step_trainer_trusted.py
 - customer_trusted_to_curated.py
-- -machine_learning_curated.py
+- machine_learning_curated.py
 
 SQL queries in SQL_DDL_scripts directory:
 -  customer_landing.sql
