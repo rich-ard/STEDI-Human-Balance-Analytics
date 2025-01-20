@@ -1,17 +1,21 @@
-CREATE EXTERNAL TABLE IF NOT EXISTS `stedi`.`customer_landing` (
-  `serialnumber` string,
-  `sharewithpublicasofdate` bigint,
-  `birthday` string,
-  `registrationdate` bigint,
-  `sharewithresearchasofdate` bigint,
-  `customername` string,
-  `email` string,
-  `lastupdatedate` bigint,
-  `phone` string,
-  `sharewithfriendsasofdate` bigint
-  )
-ROW FORMAT SERDE 'org.openx.data.jsonserde.JsonSerDe'
-WITH SERDEPROPERTIES (
-  'serialization.format' = `
-) LOCATION 's3://frequently-modulated-lakehouse/customer/landing'
-TBLPROPERTIES ('has_encrypted_data'='false');
+CREATE EXTERNAL TABLE `customer_landing`(
+  `customername` string COMMENT 'from deserializer', 
+  `email` string COMMENT 'from deserializer', 
+  `phone` string COMMENT 'from deserializer', 
+  `birthday` string COMMENT 'from deserializer', 
+  `serialnumber` string COMMENT 'from deserializer', 
+  `registrationdate` bigint COMMENT 'from deserializer', 
+  `lastupdatedate` bigint COMMENT 'from deserializer', 
+  `sharewithresearchasofdate` bigint COMMENT 'from deserializer', 
+  `sharewithpublicasofdate` bigint COMMENT 'from deserializer', 
+  `sharewithfriendsasofdate` bigint COMMENT 'from deserializer')
+ROW FORMAT SERDE 
+  'org.openx.data.jsonserde.JsonSerDe' 
+STORED AS INPUTFORMAT 
+  'org.apache.hadoop.mapred.TextInputFormat' 
+OUTPUTFORMAT 
+  'org.apache.hadoop.hive.ql.io.HiveIgnoreKeyTextOutputFormat'
+LOCATION
+  's3://frequently-modulated/customer/landing/'
+TBLPROPERTIES (
+  'classification'='json')
