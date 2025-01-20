@@ -32,14 +32,17 @@ StepTrainerLanding_node1737394329491 = glueContext.create_dynamic_frame.from_cat
 # Script generated for node Customer Trusted
 CustomerTrusted_node1737394330625 = glueContext.create_dynamic_frame.from_catalog(database="stedi", table_name="customer_trusted", transformation_ctx="CustomerTrusted_node1737394330625")
 
-# Script generated for node Join
-Join_node1737394373463 = Join.apply(frame1=CustomerTrusted_node1737394330625, frame2=StepTrainerLanding_node1737394329491, keys1=["serialnumber"], keys2=["serialnumber"], transformation_ctx="Join_node1737394373463")
-
 # Script generated for node SQL Query
 SqlQuery0 = '''
-select distinct sensorreadingtime, serialnumber, distancefromobject from myDataSource
+select distinct
+    step_trainer.sensorreadingtime
+    , step_trainer.serialnumber
+    , step_trainer.distancefromobject
+FROM step_trainer
+INNER JOIN customer
+ON step_trainer.serialnumber = customer.serialnumber
 '''
-SQLQuery_node1737394427863 = sparkSqlQuery(glueContext, query = SqlQuery0, mapping = {"myDataSource":Join_node1737394373463}, transformation_ctx = "SQLQuery_node1737394427863")
+SQLQuery_node1737394427863 = sparkSqlQuery(glueContext, query = SqlQuery0, mapping = {"customer":CustomerTrusted_node1737394330625, "step_trainer":StepTrainerLanding_node1737394329491}, transformation_ctx = "SQLQuery_node1737394427863")
 
 # Script generated for node Step Trainer Trusted
 EvaluateDataQuality().process_rows(frame=SQLQuery_node1737394427863, ruleset=DEFAULT_DATA_QUALITY_RULESET, publishing_options={"dataQualityEvaluationContext": "EvaluateDataQuality_node1737392904412", "enableDataQualityResultsPublishing": True}, additional_options={"dataQualityResultsPublishing.strategy": "BEST_EFFORT", "observations.scope": "ALL"})
