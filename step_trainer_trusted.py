@@ -37,7 +37,7 @@ Join_node1737394373463 = Join.apply(frame1=CustomerTrusted_node1737394330625, fr
 
 # Script generated for node SQL Query
 SqlQuery0 = '''
-select sensorreadingtime, serialnumber, distancefromobject from myDataSource
+select distinct sensorreadingtime, serialnumber, distancefromobject from myDataSource
 '''
 SQLQuery_node1737394427863 = sparkSqlQuery(glueContext, query = SqlQuery0, mapping = {"myDataSource":Join_node1737394373463}, transformation_ctx = "SQLQuery_node1737394427863")
 
