@@ -25,7 +25,7 @@ SQL queries in SQL_DDL_scripts directory:
 
 ### Trusted Zone
 
-![Count of customer_trusted: 482 rows where shareWithResearchAsOfDate is not blank](./screenshot_png_files/count_of_customer_trusted.png)
+![Count of customer_trusted: 0 rows where shareWithResearchAsOfDate is blank](./screenshot_png_files/count_of_customer_trusted_nulls.png)
 ![Count of accelerometer_trusted: 40981 rows](./screenshot_png_files/count_of_accelerometer_trusted.png)
 ![Count of step_trainer_trusted: 14460 rows](./screenshot_png_files/count_of_step_trainer_trusted.png)
 
